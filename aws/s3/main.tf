@@ -20,3 +20,13 @@ resource "aws_s3_bucket_versioning" "tf_s3_bucket" {
     status = var.bucket_versioning ? "Enabled" : "Suspended"
   }
 }
+
+# File insertion
+
+resource "aws_s3_object" "tf_s3_object" {
+  bucket = aws_s3_bucket.tf_s3_bucket.id
+
+  for_each = fileset("./images/", "**")
+  source = "${path.root}/images/${each.value}"
+  key = "images/${each.value}"  
+}

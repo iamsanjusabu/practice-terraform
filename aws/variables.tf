@@ -1,3 +1,4 @@
+# S3
 variable "bucket_name" {
   description = "Name of the bucket (MUST be globally unique in AWS)"
 
@@ -12,6 +13,13 @@ variable "bucket_versioning" {
 
 variable "bucket_tags" {
   description = "Collection of (dictionary/hashmap) tags"
+
+  type = map(string)
+}
+
+# EC2
+variable "instance_tags" {
+  description = "Tags of AWS EC2 instance"
 
   type = map(string)
 }
